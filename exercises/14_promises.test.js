@@ -5,20 +5,14 @@ test(`should resolve`, () => {
   return pickApple('ripe')
     .then(
       result => {
-        // throw new Error('this should not run')
-        // expect(result).toBe(/*ENTER GUESS HERE*/)
-        throw new Error('assert or throw here')
+        expect(result).toBe('ripe apple')
       },
       error => {
-        // throw new Error('this should not run')
-        // expect(error).toBe(/*ENTER GUESS HERE*/)
-        throw new Error('assert or throw here')
+        throw new Error('this should not run')
       },
     )
     .catch(error => {
-      // throw new Error('this should not run')
-      // expect(error).toBe(/*ENTER GUESS HERE*/)
-      throw new Error('assert or throw here')
+      throw new Error('this should not run')
     })
 })
 
@@ -26,34 +20,24 @@ test(`should reject`, () => {
   return pickApple('unripe')
     .then(
       result => {
-        // throw new Error('this should not run')
-        // expect(result).toBe(/*ENTER GUESS HERE*/)
-        throw new Error('assert or throw here')
+        throw new Error('this should not run')
       },
       error => {
-        // throw new Error('this should not run')
-        // expect(error).toBe(/*ENTER GUESS HERE*/)
-        throw new Error('assert or throw here')
+        expect(error).toBe('unripe apple')
       },
     )
     .catch(error => {
-      // throw new Error('this should not run')
-      // expect(error).toBe(/*ENTER GUESS HERE*/)
-      throw new Error('assert or throw here')
+      throw new Error('this should not run')
     })
 })
 
 test(`errors can be caught`, () => {
   return pickApple()
     .then(result => {
-      // throw new Error('this should not run')
-      // expect(result).toBe(/*ENTER GUESS HERE*/)
-      throw new Error('assert or throw here')
+      throw new Error('this should not run')
     })
     .catch(error => {
-      // throw new Error('this should not run')
-      // expect(error).toBe(/*ENTER GUESS HERE*/)
-      throw new Error('assert or throw here')
+      expect(error.message).toBe('out of apples')
     })
 })
 
@@ -89,3 +73,8 @@ test('I submitted my elaboration and feedback', () => {
 // If you get this far, try adding a few more tests,
 // then file a pull request to add them to the extra credit!
 // Learn more here: http://kcd.im/es6-workshop-contributing
+
+/**
+ * 1. When a rejected promise is caught in error handler and that error handler doesn't re-throw, 
+ * the following chained error handlers won't be called.
+ */

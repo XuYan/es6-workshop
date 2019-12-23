@@ -7,15 +7,9 @@ test('public class fields help us avoid .bind-ing everything', () => {
   }
 
   class MyComponent extends FakeReactComponent {
-    constructor(...args) {
-      super(...args)
-      // we don't want to have to do this...
-      this.handleClick = this.handleClick.bind(this) // sad :-(
-    }
     // convert this to a public class field so it's autobound
-    handleClick({target: {value}}) {
-      this.props.onClick(value)
-    }
+    handleClick = ({target: {value}}) => this.props.onClick(value)
+    
     render() {
       // weird JSX stuff here
     }
@@ -48,3 +42,7 @@ test('I submitted my elaboration and feedback', () => {
 // If you get this far, try adding a few more tests,
 // then file a pull request to add them to the extra credit!
 // Learn more here: http://kcd.im/es6-workshop-contributing
+
+/**
+ * 1. Use public class field to avoid onClick.bind(this) in constructor.
+ */

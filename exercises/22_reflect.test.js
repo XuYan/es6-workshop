@@ -6,7 +6,7 @@ test('Reflect.apply can be used to call a function', () => {
     },
   }
 
-  const result = null // use Reflect.apply to invoke person.sayHi
+  const result = Reflect.apply(person.sayHi, person, [ 'Hey there', 'Jaimee' ])
   expect(result).toBe('Hey there Jaimee! My name is Fred')
 })
 
@@ -17,8 +17,8 @@ test('Reflect.deleteProperty can be used instead of the `delete` keyword', () =>
     value: 'YOU CANNOT GET RID OF ME!',
   })
   // use Reflect.deleteProperty to delete the age property from the person object
-  const ageDeleted = delete person.age
-  const protectedDeleted = delete person.protected
+  const ageDeleted = Reflect.deleteProperty(person, 'age')
+  const protectedDeleted = Reflect.deleteProperty(person, 'protected')
   expect(person.age).not.toBeDefined()
   expect(ageDeleted).toBe(true)
   expect(person.protected).toBe('YOU CANNOT GET RID OF ME!')
@@ -43,16 +43,19 @@ test(`Reflect.ownKeys returns the object's own (not inherited) keys (including s
   // this will be the case for most environments, though it's generally not
   // a good idea to rely on this fact as it's not specified in the spec.
   expect(Object.keys(kyle)).toEqual([
-    /* ENTER YOUR GUESS */
+    'awesome',
   ])
   expect(Object.getOwnPropertyNames(kyle)).toEqual([
-    /* ENTER YOUR GUESS */
+    'awesome',
+    'favoriteLanguage',
   ])
   expect(Object.getOwnPropertySymbols(kyle)).toEqual([
-    /* ENTER YOUR GUESS */
+    favoriteFeature
   ])
   expect(Reflect.ownKeys(kyle)).toEqual([
-    /* ENTER YOUR GUESS */
+    'awesome',
+    favoriteFeature,
+    'favoriteLanguage',
   ])
 })
 
@@ -71,3 +74,11 @@ test('I submitted my elaboration and feedback', () => {
 // If you get this far, try adding a few more tests,
 // then file a pull request to add them to the extra credit!
 // Learn more here: http://kcd.im/es6-workshop-contributing
+
+
+/**
+ * 1. Refer to this document to learn more about reflect:
+ * http://es6.ruanyifeng.com/#docs/reflect
+ * 2. The range of things returned:
+ *    Reflect.ownKeys(obj) === Object.getOwnPropertyNames(obj) + Object.getOwnPropertySymbols(obj) >= Object.keys(obj)
+ */

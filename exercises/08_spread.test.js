@@ -2,6 +2,7 @@ test(`should be able to call a function and spread the arguments`, () => {
   const args = ['a', 'b', 'c']
   let calls = 0
   // call myFunction using the spread operator with args
+  myFunction(...args)
   expect(calls).toBe(1)
 
   function myFunction(a, b, c) {
@@ -15,6 +16,7 @@ test(`should be able to call a function and spread the arguments`, () => {
 test(`should be easier to concatenate arrays`, () => {
   const array1 = [1, 2, 3]
   // create a result array that uses the spread operator to concatenate array1 with [4, 5, 6]
+  const result = [ ...array1, ...[4, 5, 6] ]
   expect(result).toEqual([1, 2, 3, 4, 5, 6])
 })
 
@@ -24,6 +26,10 @@ test(`should be able to merge properties from objects`, () => {
     baz: 'foobar',
   }
   // create a result object that uses the spread operator to add `eggs: 'spam'` to what exists in obj1
+  const result = {
+    ...obj1,
+    eges: 'spam',
+  }
   expect(result).toEqual({
     foo: 'bar',
     baz: 'foobar',
@@ -46,3 +52,9 @@ test('I submitted my elaboration and feedback', () => {
 // If you get this far, try adding a few more tests,
 // then file a pull request to add them to the extra credit!
 // Learn more here: http://kcd.im/es6-workshop-contributing
+
+/*
+  1. Use ... to spread an array into multiple single elements.
+  2. Spread operator can also be applied to object. 
+  It comes in handy when merging two objects together.
+*/

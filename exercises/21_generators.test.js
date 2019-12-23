@@ -1,12 +1,12 @@
 test(`should yield objects with value and done properties`, () => {
   const odds = giveMeOneOddNumber()
 
-  expect(odds.next().value).toBe(/* ENTER YOUR GUESS */)
-  expect(odds.next().value).toBe(/* ENTER YOUR GUESS */)
-  expect(odds.next().done).toBe(/* ENTER YOUR GUESS */)
+  expect(odds.next().value).toBe(1)
+  expect(odds.next().value).toBe(3)
+  expect(odds.next().done).toBe(false)
   odds.next()
-  expect(odds.next().value).toBe(/* ENTER YOUR GUESS */)
-  expect(odds.next().done).toBe(/* ENTER YOUR GUESS */)
+  expect(odds.next().value).toBe(9)
+  expect(odds.next().done).toBe(true)
 
   function* giveMeOneOddNumber() {
     yield 1
@@ -33,7 +33,7 @@ test(`can be iterated over`, () => {
     sum = sum + even
   }
 
-  expect(sum).toBe(/* ENTER YOUR GUESS */)
+  expect(sum).toBe(20)
 })
 
 //////// Elaboration & Feedback /////////
@@ -51,3 +51,9 @@ test('I submitted my elaboration and feedback', () => {
 // If you get this far, try adding a few more tests,
 // then file a pull request to add them to the extra credit!
 // Learn more here: http://kcd.im/es6-workshop-contributing
+
+/**
+ * 1. Calling generator function will give back an iterator object with next method in it.
+ *    Each time we call the method, it'll give back an object ({ value: any, done: boolean }).
+ * 2. for...of loop over a generator is synchronous and blocking.
+ */

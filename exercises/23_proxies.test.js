@@ -22,7 +22,7 @@ function getCharacter() {
 
 test('can wrap an existing object', () => {
   const character = getCharacter()
-  const proxy = character
+  const proxy = new Proxy(character, {})
   expect(proxy).not.toBe(character) // referential equality
   expect(proxy).toEqual(character) // deep equality
 })
@@ -30,7 +30,9 @@ test('can wrap an existing object', () => {
 test('handler can intercept gets, sets, and deletes', () => {
   const character = getCharacter()
 
-  const handler = {}
+  const handler = {
+    
+  }
   const proxy = new Proxy(character, handler)
 
   // interact with the proxy

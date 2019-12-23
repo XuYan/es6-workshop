@@ -1,6 +1,8 @@
 import * as Mathy from '../common/Mathy'
 import * as IndexImport from '../common'
 // WRITE YOUR IMPORT STATEMENTS HERE
+import { sqrt as mySqrt, square as mySquare } from '../common/Mathy'
+import _ from 'lodash'
 
 test('can import Mathy', () => {
   // this one's already done! You're welcome :)
@@ -36,11 +38,16 @@ test('I submitted my elaboration and feedback', () => {
 test.skip('Index import', () => {
   //I have noticed that using index.js is pretty common pattern
   //If someone has been confused about that maybe this helps
-  expect(IndexImport.variable1).toBe(/* ENTER YOUR GUESS HERE */)
-  expect(IndexImport.variable2).toBe(/* ENTER YOUR GUESS HERE */)
-  expect(IndexImport.variable3).toBe(/* ENTER YOUR GUESS HERE */)
-  expect(IndexImport.variable4).toBe(/* ENTER YOUR GUESS HERE */)
+  expect(IndexImport.variable1).toBe(Bob)
+  expect(IndexImport.variable2).toBe(Kent)
+  expect(IndexImport.variable3).toBe(222)
+  expect(IndexImport.variable4).toBe(false)
 })
 // If you get this far, try adding a few more tests,
 // then file a pull request to add them to the extra credit!
 // Learn more here: http://kcd.im/es6-workshop-contributing
+
+/*
+  1. Use keyword 'as' to alias imported things.
+  2. When importing a directory, runtime will search for index.js in that directory and use its content to decide what to import.
+*/

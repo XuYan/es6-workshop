@@ -26,6 +26,7 @@ test('can be used to pull apart objects', () => {
   // const city = address.city;
   // const state = address.state;
   // const zip = address.zip;
+  const { city, state, zip } = getAddress()
   expect(city).toBe('Salt Lake City')
   expect(state).toBe('UT')
   expect(zip).toBe(84115)
@@ -33,11 +34,13 @@ test('can be used to pull apart objects', () => {
 
 test('sets missing values to undefined', () => {
   // Using destructuring, call `getAddress()` and create an 'address' variable.
+  const { address } = getAddress()
   expect(address).toBeUndefined()
 })
 
 test('can alias destructured variables', () => {
   // Using destructuring, call `getAddress()` and pull the city, state and zip out, and alias them to c, s, z, respectively
+  const { city: c, state: s, zip: z } = getAddress()
   expect(c).toBe('Salt Lake City')
   expect(s).toBe('UT')
   expect(z).toBe(84115)
@@ -48,6 +51,7 @@ test('can alias destructured variables', () => {
 
 test('can destructure nested variables', () => {
   // Using destructuring, call `getAddress()` and create `lat` and `long` variables.
+  const { coords: { lat, long } } = getAddress()
   expect(lat).toBe(40.776608)
   expect(long).toBe(-111.920485)
   expect(() => noop(coords)).toThrow()
@@ -55,12 +59,14 @@ test('can destructure nested variables', () => {
 
 test('can be used to pull apart arrays', () => {
   // Call getNumbers and pull the first value out as `one` and the second as `two`
+  const [ one, two ] = getNumbers()
   expect(one).toBe(1)
   expect(two).toBe(2)
 })
 
 test('can skip indexes in arrays', () => {
   // Call getNumbers and pull the first value out as `one` and the third as `three`
+  const [ one, , three ] = getNumbers()
   expect(one).toBe(1)
   expect(three).toBe(3)
   expect(() => noop(two)).toThrow()
@@ -68,6 +74,7 @@ test('can skip indexes in arrays', () => {
 
 test('can reach nested arrays', () => {
   // Call getNestedNumbers and pull the first value out as `one`, the 3 as `three` and 6 as `sixth`.
+  const [ one, , [ three, , [ , six ] ] ] = getNestedNumbers()
   expect(one).toBe(1)
   expect(three).toBe(3)
   expect(six).toBe(6)
@@ -90,3 +97,9 @@ test('I submitted my elaboration and feedback', () => {
 // If you get this far, try adding a few more tests,
 // then file a pull request to add them to the extra credit!
 // Learn more here: http://kcd.im/es6-workshop-contributing
+
+/*
+  1. Use colon(:) to alias destructured variable.
+  2. Destructuring a property from a variable that doesn't contain that property will give an undefined.
+  3. Destructuring works fine on nested object/array.
+*/

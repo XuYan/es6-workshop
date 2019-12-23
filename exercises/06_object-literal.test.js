@@ -9,6 +9,11 @@ test('can use shorthand for property names', () => {
     //     return `${this.name} attacked ${target.name}`;
     //   }
     // }
+    return {
+      name,
+      power,
+      attack: target => `${name} attacked ${target.name}`
+    }
   }
 
   const godzilla = createMonster('Godzilla', 1000)
@@ -23,6 +28,7 @@ test('can use expressions as property names', () => {
     return {
       tasty: true,
       type,
+      [type.toUpperCase() + type.length]: description,
       // add a expression as property name where the property name is the given type.toUpperCase() + type.length
       // sound contrived? It is... 😅
     }
@@ -53,3 +59,11 @@ test('I submitted my elaboration and feedback', () => {
 // If you get this far, try adding a few more tests,
 // then file a pull request to add them to the extra credit!
 // Learn more here: http://kcd.im/es6-workshop-contributing
+
+/*
+  1. When an object's property name is the same as the variable that holds the property value, 
+  we can use shorthand property name. See the first test for an example.
+  2. When an object's property name needs to be determined at runtime, 
+  we can use [expression] as the property name. 
+  The expression decides what the property name is at runtime.
+*/
